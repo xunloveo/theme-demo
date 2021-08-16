@@ -1,0 +1,113 @@
+@import 'mixins.scss';
+/* table
+ -------------------- */
+.ym-table {
+  &.el-table {
+    color: var(--table-color);
+    background: var(--table-background);
+    border-radius: 6px 6px 0 0;
+
+    // 去除底边边框
+    &:before {
+      background: transparent;
+    }
+
+    thead {
+      color: var(--table-color);
+    }
+
+    th {
+      background: var(--table-background-striped);
+
+      &.is-leaf {
+        border: none;
+      }
+
+      &:last-child {
+        border-radius: 0 6px 6px 0;
+      }
+    }
+
+    tr {
+      background: var(--table-background);
+
+      &.is-returned {
+        &::after {
+          content: '退回';
+          position: absolute;
+          z-index: 20;
+          left: 0;
+          width: 38px;
+          height: 14px;
+          background: #ffd239;
+          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+          border-radius: 6px 0px 6px 0px;
+          border: 1px solid #ffe99d;
+          text-align: center;
+          vertical-align: middle;
+          font-size: 11px;
+          color: #6f590d;
+        }
+      }
+
+      &.hover-row,
+      &.current-row,
+      &:hover {
+        td {
+          background: var(--table-background);
+        }
+      }
+    }
+
+    td {
+      border-bottom-color: var(--table-border-color);
+    }
+
+    .el-table {
+      &__fixed,
+      &__fixed-right {
+        &:before {
+          background: transparent;
+        }
+      }
+
+      &__fixed-right {
+        height: calc(100% - 9px) !important;
+      }
+
+      &__fixed-right-patch {
+        width: 8px !important;
+        border: none;
+        border-radius: 0 6px 6px 0;
+        background: var(--table-background-striped);
+        border-color: var(--table-background-striped);
+      }
+
+      &__header-wrapper,
+      &__fixed-header-wrapper {
+        border-radius: 6px;
+        border: none;
+      }
+
+      &__body-wrapper,
+      &___fixed-body-wrapper {
+        @include scroll-bar();
+      }
+    }
+
+    &--striped {
+      .el-table__body {
+        tr {
+          &.el-table__row {
+            &--striped {
+              background: var(--table-background-striped);
+              td {
+                background: var(--table-background-striped);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

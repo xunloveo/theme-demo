@@ -1,0 +1,50 @@
+/* Scrollbar
+ -------------------- */
+@import 'var.scss';
+@mixin scroll-bar {
+  &::-webkit-scrollbar {
+    z-index: 11;
+    width: 8x;
+
+    &:horizontal {
+      height: 8px;
+    }
+
+    &-thumb {
+      border-radius: 8px;
+      width: 8px;
+      background: var(--scrollbar-thumb-background);
+    }
+
+    &-corner {
+      background: transparent;
+    }
+
+    &-track {
+      background: var(--scrollbar-track-background);
+      border-radius: 8px;
+
+      &-piece {
+        background: var(--scrollbar-track-background);
+        width: 8px;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+/* Placeholder
+ -------------------- */
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
