@@ -109,6 +109,6 @@ $themes: (
     color: themed($color);
   }
 }
-
-## 这里通过按钮改变data-theme的值，通过表格、文字、状态、tag来体现护肤场景
 ```
+
+## 这里通过按钮改变 data-theme 的值，通过表格、文字、状态、tag 来体现护肤场景

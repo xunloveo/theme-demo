@@ -55,16 +55,10 @@
   </el-table>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, CSSProperties, ref } from 'vue'
+<script lang="ts" setup>
+import { PropType, CSSProperties, ref } from 'vue'
 
-interface BaseObj {
-  [key: string]: any
-}
-
-export default defineComponent({
-  name: 'EleTable',
-  props: {
+defineProps({
     tableData: {
       type: Array as PropType<BaseObj[]>,
       default: () => [],
@@ -104,7 +98,7 @@ export default defineComponent({
     },
     operatorFixed: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     operatorShow: {
       type: Boolean,
@@ -118,16 +112,9 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-  },
-  setup() {
-    const table = ref(null)
+  });
 
-    return {
-      table,
-    }
-  },
-})
+const table = ref(null)
 </script>
 
-<style lang="scss" scoped>
-</style>
+

@@ -4,7 +4,11 @@
   </div>
 
   <div class="table-wrap">
-    <ele-table :table-data="tableData" :column-data="columnData"></ele-table>
+    <ele-table :table-data="tableData" :column-data="columnData">
+      <template #info="{row}">
+        <user-info-column :info="row" />
+      </template>
+    </ele-table>
   </div>
 
   <div class="theme-test">{{ msg }}</div>
@@ -34,8 +38,9 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, defineProps } from 'vue'
+import { reactive } from 'vue'
 import EleTable from './EleTable.vue'
+import UserInfoColumn from './UserInfoColumn.vue'
 
 const props = defineProps({
   msg: {
@@ -45,62 +50,62 @@ const props = defineProps({
 
 const tableData = reactive([
   {
-    name: 'zs',
-    age: 19,
+    patName: 'ZhangSan',
+    patSourceCode: '103201',
+    patSource: '住院',  
+    patFlagEd: true,
+    sex: '男',  
+    patAge: 19,
+    patAgeUnit: '岁'
   },
   {
-    name: 'ls',
-    age: 18,
+    patName: 'LiSi',
+    patSourceCode: '103202',
+    patSource: '门诊',  
+    patFlagEd: false,
+    sex: '女',  
+    patAge: 49,
+    patAgeUnit: '岁'
   },
 ])
 
 const columnData = reactive([
   {
     prop: 'name',
-    label: '姓名',
+    label: '患者',
     minWidth: '200px',
-  },
+    slotname: 'info'
+  },  
   {
-    prop: 'age',
+    prop: 'sex',
     label: '性别',
     minWidth: '200px',
-  },
+  },  
   {
-    prop: 'name',
-    label: '姓名',
-    minWidth: '200px',
-  },
-  {
-    prop: 'age',
+    prop: 'sex',
     label: '性别',
     minWidth: '200px',
-  },
+  }, 
   {
-    prop: 'name',
-    label: '姓名',
-    minWidth: '200px',
-  },
-  {
-    prop: 'age',
+    prop: 'sex',
     label: '性别',
     minWidth: '200px',
-  },
-  {
-    prop: 'name',
-    label: '姓名',
-  },
-  {
-    prop: 'age',
-    label: '性别',
-  },
-  {
-    prop: 'name',
-    label: '姓名',
-  },
-  {
-    prop: 'age',
-    label: '性别',
-  },
+  },  
+  // {
+  //   prop: 'sex',
+  //   label: '性别',
+  //   minWidth: '200px',
+  // }, 
+  // {
+  //   prop: 'sex',
+  //   label: '性别',
+  //   minWidth: '200px',
+  // },  
+  // {
+  //   prop: 'sex',
+  //   label: '性别',
+  //   minWidth: '200px',
+  // }, 
 ])
 
 const changeTheme = () => {
@@ -180,6 +185,10 @@ const tagList = [
     class: 'hospital',
   },
   {
+    label: '体检',
+    class: 'examination',
+  },
+  {
     label: '急诊',
     class: 'emergency',
   },
@@ -239,7 +248,6 @@ const tagList = [
 </script>
 
 <style lang="scss" coped>
-// @import '@/theme/var.scss';
 @import '@/theme/base.scss';
 
 .header {
@@ -259,8 +267,9 @@ const tagList = [
 }
 
 .theme-test {
-  height: 40px;
   line-height: 40px;
+  height: 40px;
+  
   @include font-color('color1');
 }
 

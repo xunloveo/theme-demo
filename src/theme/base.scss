@@ -8,18 +8,6 @@ $status-list: 'pay-wait', 'triage-wait', 'triage-process', 'consult-wait',
   'consult-process', 'check-wait', 'check-process', 'confirm-wait', 'complete',
   'cancel', 'close', 'operator-wait', 'operator-process', 'handle';
 
-/* 设置每个状态下圆点的背景色
- --------------------*/
-@mixin setStatusBg($status-list) {
-  @each $status in $status-list {
-    &.#{$status} {
-      .circle {
-        background: var(--background-#{$status});
-      }
-    }
-  }
-}
-
 /* status */
 .table-status {
   --background-pay-wait: #248afd;
@@ -50,25 +38,22 @@ $status-list: 'pay-wait', 'triage-wait', 'triage-process', 'consult-wait',
 
 /* tag
  --------------------*/
-$tag-list: modality outpatient hospital emergency;
-@mixin setTagColor($tag-list) {
-  @each $tag in $tag-list {
-    &.#{$tag}-tag {
-      color: var(--color-#{$tag});
-    }
-  }
-}
+$tag-list: modality outpatient hospital examination emergency;
+
 .tag {
   --color-modality: #2eb4b5;
   --color-outpatient: #ffa05c;
   --color-hospital: #248afd;
+  --color-hospital: #60aba9;
   --color-emergency: #fb7b7b;
 
   width: 42px;
   height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: var(--font-size-small);
-  line-height: 20px;
-  text-align: center;
+
   border-radius: 4px;
   border: 1px solid currentColor;
 

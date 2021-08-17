@@ -1,6 +1,6 @@
+@import 'var.scss';
 /* Scrollbar
  -------------------- */
-@import 'var.scss';
 @mixin scroll-bar {
   &::-webkit-scrollbar {
     z-index: 11;
@@ -46,5 +46,27 @@
 
   &:-ms-input-placeholder {
     @content;
+  }
+}
+
+/* 设置每个状态下圆点的背景色
+ --------------------*/
+@mixin setStatusBg($status-list) {
+  @each $status in $status-list {
+    &.#{$status} {
+      .circle {
+        background: var(--background-#{$status});
+      }
+    }
+  }
+}
+
+/* 设置仪器类型 患者来源标签
+ --------------------*/
+@mixin setTagColor($tag-list) {
+  @each $tag in $tag-list {
+    &.#{$tag}-tag {
+      color: var(--color-#{$tag});
+    }
   }
 }
