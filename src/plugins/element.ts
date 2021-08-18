@@ -85,7 +85,8 @@ import {
   ElMessage,
   ElMessageBox,
   ElNotification,
-} from 'element-plus';
+  ElConfigProvider,
+} from 'element-plus'
 
 const components = [
   ElAlert,
@@ -166,6 +167,7 @@ const components = [
   ElTransfer,
   ElTree,
   ElUpload,
+  ElConfigProvider,
 ]
 
 const plugins = [
@@ -181,9 +183,9 @@ export const elementPlugin = {
     components.forEach(component => {
       app.component(component.name, component)
     })
-    
+
     plugins.forEach(plugin => {
       app.use(plugin)
     })
-  }
+  },
 }

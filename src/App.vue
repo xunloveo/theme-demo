@@ -1,14 +1,19 @@
 <template>
-  <hello-world msg="Hello Vue 3 + TypeScript + Vite" />
+  <el-config-provider :locale="locale">
+    <hello-world msg="Hello Vue 3 + TypeScript + Vite" />
+  </el-config-provider>
 </template>
 
 <script lang="ts" setup>
 import HelloWorld from './components/HelloWorld.vue'
 
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+
+const locale = zhCn
 </script>
 
 <style lang="scss">
-@import './theme/mixins.scss';
+@import "./theme/mixins.scss";
 
 * {
   margin: 0;
