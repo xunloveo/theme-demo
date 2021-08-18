@@ -1,6 +1,7 @@
 @import 'var.scss';
 @import 'mixins.scss';
 @import 'table.scss';
+@import 'pagination.scss';
 
 /* 定义各个状态 
  --------------------*/
@@ -44,7 +45,7 @@ $tag-list: modality outpatient hospital examination emergency;
   --color-modality: #2eb4b5;
   --color-outpatient: #ffa05c;
   --color-hospital: #248afd;
-  --color-hospital: #60aba9;
+  --color-examination: #60aba9;
   --color-emergency: #fb7b7b;
 
   width: 42px;

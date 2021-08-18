@@ -1,25 +1,11 @@
 <template>
   <div class="header">
+    <span class="theme-test">{{ msg }}</span>
     <el-button type="primary" @click="changeTheme()">切换主题</el-button>
   </div>
 
-  <div class="table-wrap">
-    <ele-table :table-data="tableData" :column-data="columnData">
-      <template #info="{row}">
-        <user-info-column :info="row" />
-      </template>
-    </ele-table>
-  </div>
-
-  <div class="theme-test">{{ msg }}</div>
-
   <div class="status-list">
-    <div
-      v-for="item in statusList"
-      class="table-status"
-      :class="item.class"
-      :key="item.class"
-    >
+    <div v-for="item in statusList" class="table-status" :class="item.class" :key="item.class">
       <span class="circle"></span>
       <span>{{ item.label }}</span>
     </div>
@@ -31,41 +17,101 @@
       :class="tag.class + '-tag'"
       v-for="tag in tagList"
       :key="tag.class"
-    >
-      {{ tag.label }}
-    </div>
+    >{{ tag.label }}</div>
+  </div>
+
+  <div class="table-wrap">
+    <div class="tip">表格数据过多时操作固定在右侧，窗口大小改变也会相应变化，当将autoFixed设置为false时，此时根据你设置的operatorFixed为准</div>
+    <ele-table :table-data="tableData" :column-data="columnData" @row-click="rowClick">
+      <template #info="{ row }">
+        <user-info-column :info="row" />
+      </template>
+      <template #status="{ row }">
+        <status :info="{ statusCode: row.statusCode, status: row.status }" />
+      </template>
+      <template #methods="{ row }">
+        <check-methods :info="{ modality: row.modality, scan: row.scan }" />
+      </template>
+      <template #operator="{ row }">
+        <el-button type="text" size="small" @click="look(row)">查看</el-button>
+        <el-button type="text" size="small" @click="edit(row)">编辑</el-button>
+      </template>
+    </ele-table>
+
+    <div class="block"></div>
+
+    <ele-table :table-data="tableData" :column-data="columnData1">
+      <template #info="{ row }">
+        <user-info-column :info="row" />
+      </template>
+      <template #status="{ row }">
+        <status :info="{ statusCode: row.statusCode, status: row.status }" />
+      </template>
+      <template #methods="{ row }">
+        <check-methods :info="{ modality: row.modality, scan: row.scan }" />
+      </template>
+    </ele-table>
+
+    <pagination :total="40" @current-change="handleCurrentChange" />
+
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      v-model:currentPage="currentPage1"
+      :page-size="100"
+      layout="total, prev, pager, next"
+      :total="1000"
+    ></el-pagination>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import EleTable from './EleTable.vue'
 import UserInfoColumn from './UserInfoColumn.vue'
+import CheckMethods from './CheckMethods.vue'
+import Status from './Status.vue'
+import Pagination from './Pagination.vue'
 
-const props = defineProps({
+defineProps({
   msg: {
     type: String,
   },
 })
 
+const currentPage1 = ref(5)
+
+const handleSizeChange = (val: number) => {
+  console.log(`每页 ${val} 条`);
+};
+
+
 const tableData = reactive([
   {
     patName: 'ZhangSan',
     patSourceCode: '103201',
-    patSource: '住院',  
+    patSource: '住院',
     patFlagEd: true,
-    sex: '男',  
+    sex: '男',
     patAge: 19,
-    patAgeUnit: '岁'
+    patAgeUnit: '岁',
+    modality: 'CT',
+    scan: '平扫+增强',
+    statusCode: '103104',
+    status: '待咨询',
   },
   {
     patName: 'LiSi',
     patSourceCode: '103202',
-    patSource: '门诊',  
+    patSource: '门诊',
     patFlagEd: false,
-    sex: '女',  
+    sex: '女',
     patAge: 49,
-    patAgeUnit: '岁'
+    patAgeUnit: '岁',
+    modality: 'DR',
+    scan: '平扫+增强',
+    statusCode: '待规划',
+    status: '待规划',
   },
 ])
 
@@ -73,24 +119,67 @@ const columnData = reactive([
   {
     prop: 'name',
     label: '患者',
-    minWidth: '200px',
+    minWidth: '800',
     slotname: 'info'
-  },  
+  },
+  {
+    prop: 'status',
+    label: '状态',
+    minWidth: '200',
+    slotname: 'status'
+  },
+  {
+    prop: 'scan',
+    label: '检查方法',
+    minWidth: '200',
+    slotname: 'methods'
+  },
   {
     prop: 'sex',
     label: '性别',
-    minWidth: '200px',
-  },  
+    minWidth: '200',
+  },
+  // {
+  //   prop: 'sex',
+  //   label: '性别',
+  //   minWidth: '200px',
+  // }, 
+  // {
+  //   prop: 'sex',
+  //   label: '性别',
+  //   minWidth: '200px',
+  // },  
+  // {
+  //   prop: 'sex',
+  //   label: '性别',
+  //   minWidth: '200px',
+  // }, 
+])
+
+const columnData1 = reactive([
+  {
+    prop: 'name',
+    label: '患者',
+    minWidth: '200',
+    slotname: 'info'
+  },
+  {
+    prop: 'status',
+    label: '状态',
+    minWidth: '200',
+    slotname: 'status'
+  },
+  {
+    prop: 'scan',
+    label: '检查方法',
+    minWidth: '200',
+    slotname: 'methods'
+  },
   {
     prop: 'sex',
     label: '性别',
-    minWidth: '200px',
-  }, 
-  {
-    prop: 'sex',
-    label: '性别',
-    minWidth: '200px',
-  },  
+    minWidth: '200',
+  },
   // {
   //   prop: 'sex',
   //   label: '性别',
@@ -198,6 +287,23 @@ const tagList = [
   },
 ]
 
+
+const rowClick = (row: Object) => {
+  console.log('rowClick:', row)
+}
+
+const look = (row: Object) => {
+  console.log('look:', row)
+}
+
+const edit = (row: Object) => {
+  console.log('edit:', row)
+}
+
+const handleCurrentChange = (val: number) => {
+  console.log('current-change:当前页-', val)
+}
+
 // export default defineComponent({
 //   name: 'HelloWorld',
 //   components: {
@@ -248,7 +354,16 @@ const tagList = [
 </script>
 
 <style lang="scss" coped>
-@import '@/theme/base.scss';
+@import "@/theme/base.scss";
+
+.tip {
+  height: 40px;
+  line-height: 40px;
+  color: var(--color-green-light);
+}
+.block {
+  height: 20px;
+}
 
 .header {
   padding-right: 10px;
@@ -267,14 +382,17 @@ const tagList = [
 }
 
 .theme-test {
-  line-height: 40px;
   height: 40px;
-  
-  @include font-color('color1');
+  margin-right: 20px;
+  line-height: 40px;
+
+  @include font-color("color1");
 }
 
 .status-list {
   display: inline-flex;
+  height: 40px;
+  line-height: 40px;
   color: var(--table-color);
   .table-status {
     margin: 0 5px;

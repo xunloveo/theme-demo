@@ -1,0 +1,51 @@
+.page-block {
+  height: 40px;
+  background: transparent;
+  text-align: center;
+
+  &.el-pagination {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    .el-pagination__total {
+      color: var(--pagination-total-color);
+      font-size: 12px;
+    }
+    .el-pager {
+      li {
+        height: 36px;
+        line-height: 36px;
+        color: var(--pagination-text-color);
+        background: transparent;
+
+        &.active,
+        &:hover {
+          color: var(--el-color-primary);
+        }
+      }
+    }
+    button {
+      display: inline-flex;
+      width: 20px;
+      min-width: 0;
+      height: 20px;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      border-radius: 50%;
+      background: var(--pagination-prve-next-background-color);
+
+      &:not([disabled]):hover {
+        color: var(--el-color-primary);
+      }
+
+      &:disabled {
+        color: white;
+        background: var(--pagination-prve-next-background-color);
+        filter: blur(0.5px);
+      }
+    }
+  }
+}

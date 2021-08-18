@@ -4,7 +4,7 @@
 @mixin scroll-bar {
   &::-webkit-scrollbar {
     z-index: 11;
-    width: 8x;
+    width: 8px;
 
     &:horizontal {
       height: 8px;

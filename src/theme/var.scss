@@ -39,6 +39,11 @@ $color--light: #333;
   --scrollbar-thumb-background: #D8D8D8;
   --scrollbar-track-background: #56585F;
 
+  /* pagination */
+  --pagination-text-color: #333333;
+  --pagination-total-color: #333333;
+  --pagination-prve-next-background-color: #C4C4C4;
+
 }
 
 [data-theme='dark'] {
@@ -63,6 +68,11 @@ $color--light: #333;
   /* scrollbar */
   --scrollbar-thumb-background: rgba(119, 119, 119, 1);
   --scrollbar-track-background: rgba(119, 119, 119, 0.37);
+
+  /* pagination */
+  --pagination-text-color: white;
+  --pagination-total-color: white;
+  --pagination-prve-next-background-color: #3D4049;
 }
 
 $themes: (
