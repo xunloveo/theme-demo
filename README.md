@@ -4,6 +4,10 @@
 
 ## 效果展示图
 
+![alt 亮色版](https://github.com/xunloveo/theme-demo/blob/main/screenshots/light.png)
+
+![alt 暗黑版](https://github.com/xunloveo/theme-demo/blob/main/screenshots/dark.png)
+
 ## 直接使用 css 变量
 
 根据不同的主题配置不同变量的值，但是变量名得一致
