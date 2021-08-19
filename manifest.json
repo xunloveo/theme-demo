@@ -1,0 +1,24 @@
+{
+  "index.html": {
+    "file": "assets/index.9ca924de.js",
+    "src": "index.html",
+    "isEntry": true,
+    "imports": [
+      "_vue.0cc20b59.js",
+      "_element-plus.08975caa.js"
+    ],
+    "css": [
+      "assets/index.fefe1da8.css"
+    ],
+    "assets": [
+      "assets/element-icons.9c88a535.woff",
+      "assets/element-icons.de5eb258.ttf"
+    ]
+  },
+  "_vue.0cc20b59.js": {
+    "file": "assets/vue.0cc20b59.js"
+  },
+  "_element-plus.08975caa.js": {
+    "file": "assets/element-plus.08975caa.js"
+  }
+}
