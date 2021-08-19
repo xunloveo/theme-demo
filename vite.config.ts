@@ -9,6 +9,7 @@ function resolve(dir) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/theme-demo',
   plugins: [
     vue(),
     styleImport({
@@ -39,5 +40,18 @@ export default defineConfig({
     alias: {
       '@': resolve('src'),
     },
+  },
+  build: {
+    // sourcemap: true,
+    manifest: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vue: ['vue'],
+          'element-plus': ['element-plus'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 500,
   },
 })

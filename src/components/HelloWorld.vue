@@ -58,6 +58,7 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       v-model:currentPage="currentPage"
+      v-model:pageSize="pageSize"
       :page-size="100"
       layout="total, prev, pager, next,sizes"
       :page-sizes="[100, 200, 300, 400]"
@@ -81,6 +82,7 @@ defineProps({
 })
 
 const currentPage = ref(5)
+const pageSize = ref(100)
 
 const handleSizeChange = (val: number) => {
   console.log(`每页 ${val} 条`);
