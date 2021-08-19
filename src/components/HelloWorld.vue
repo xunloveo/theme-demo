@@ -54,17 +54,15 @@
 
     <pagination :total="40" @current-change="handleCurrentChange" />
 
-    <el-pagination
+    <pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      v-model:currentPage="currentPage1"
+      v-model:currentPage="currentPage"
       :page-size="100"
       layout="total, prev, pager, next,sizes"
       :page-sizes="[100, 200, 300, 400]"
       :total="1000"
-    ></el-pagination>
-
-    <el-date-picker v-model="value1" type="date" placeholder="选择日期"></el-date-picker>
+    ></pagination>
   </div>
 </template>
 
@@ -81,8 +79,8 @@ defineProps({
     type: String,
   },
 })
-const value1 = ref('')
-const currentPage1 = ref(5)
+
+const currentPage = ref(5)
 
 const handleSizeChange = (val: number) => {
   console.log(`每页 ${val} 条`);
