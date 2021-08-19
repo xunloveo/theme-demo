@@ -1,0 +1,20 @@
+{
+  "index.html": {
+    "file": "assets/index.929490fb.js",
+    "src": "index.html",
+    "isEntry": true,
+    "css": [
+      "assets/index.62c6acf8.css"
+    ],
+    "assets": [
+      "assets/element-icons.9c88a535.9c88a535.woff",
+      "assets/element-icons.de5eb258.de5eb258.ttf"
+    ]
+  },
+  "_vue.f8638657.js": {
+    "file": "assets/vue.f8638657.js"
+  },
+  "_element-plus.4170fa9f.js": {
+    "file": "assets/element-plus.4170fa9f.js"
+  }
+}
